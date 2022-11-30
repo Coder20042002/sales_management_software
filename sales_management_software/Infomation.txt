@@ -1,0 +1,19 @@
+﻿-- Đây là file note thông tin
+-- Mọi người có thể ghi chú vào đây để code
+-- Bao gồm phân công công việc
+
+Phương
+-
+
+Tín
+--tên sever DESKTOP-4HKGLMA\SQL
+
+Nguyện
+-LAPTOP-5S58PVCE\SQLEXPRESS
+
+Lợi
+-
+
+Trung
+Giao diện các kiểu
+-

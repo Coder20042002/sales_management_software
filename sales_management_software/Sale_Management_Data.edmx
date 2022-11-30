@@ -1,0 +1,1185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Sale_ManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DON_HANG">
+          <Key>
+            <PropertyRef Name="madh" />
+          </Key>
+          <Property Name="madh" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="makh" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="ngaydat" Type="date" />
+          <Property Name="ngaygiao" Type="date" />
+          <Property Name="diachigiao" Type="nvarchar" MaxLength="50" />
+          <Property Name="deleted" Type="bit" />
+          <Property Name="masp" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="tensp" Type="nvarchar" MaxLength="30" />
+          <Property Name="dongia" Type="int" />
+          <Property Name="soluong" Type="int" />
+        </EntityType>
+        <EntityType Name="HOA_DON">
+          <Key>
+            <PropertyRef Name="mahd" />
+          </Key>
+          <Property Name="mahd" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="masp" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="tensp" Type="nvarchar" MaxLength="30" />
+          <Property Name="dongia" Type="int" />
+          <Property Name="giamgia" Type="int" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="tongtien" Type="int" />
+          <Property Name="deleted" Type="bit" />
+          <Property Name="madh" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="ngaydat" Type="date" />
+          <Property Name="makh" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="tenkh" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="KHACH_HANG">
+          <Key>
+            <PropertyRef Name="makh" />
+          </Key>
+          <Property Name="makh" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="tenkh" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="sdt" Type="char" MaxLength="10" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="50" />
+          <Property Name="deleted" Type="bit" />
+          <Property Name="username" Type="varchar" MaxLength="20" />
+          <Property Name="pass" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="LOAI_SAN_PHAM">
+          <Key>
+            <PropertyRef Name="maloai" />
+          </Key>
+          <Property Name="maloai" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="tenloai" Type="nvarchar" MaxLength="30" />
+          <Property Name="deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="NHA_CUNG_CAP">
+          <Key>
+            <PropertyRef Name="maNCC" />
+          </Key>
+          <Property Name="maNCC" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="tencty" Type="nvarchar" MaxLength="30" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="50" />
+          <Property Name="sdt" Type="char" MaxLength="10" />
+          <Property Name="deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="QUAN_LY">
+          <Key>
+            <PropertyRef Name="maql" />
+          </Key>
+          <Property Name="maql" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="tenql" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SAN_PHAM">
+          <Key>
+            <PropertyRef Name="masp" />
+          </Key>
+          <Property Name="masp" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="tensp" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="dongia" Type="int" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="maNCC" Type="char" MaxLength="10" />
+          <Property Name="maloai" Type="char" MaxLength="5" />
+          <Property Name="deleted" Type="bit" />
+          <Property Name="anhsp" Type="nvarchar(max)" />
+          <Property Name="mats" Type="char" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="THONG_SO_KY_THUAT">
+          <Key>
+            <PropertyRef Name="mats" />
+          </Key>
+          <Property Name="deleted" Type="bit" Nullable="false" />
+          <Property Name="manhinh" Type="varchar" MaxLength="20" />
+          <Property Name="camera" Type="varchar" MaxLength="20" />
+          <Property Name="chipset" Type="varchar" MaxLength="30" />
+          <Property Name="ram" Type="varchar" MaxLength="10" />
+          <Property Name="pin" Type="varchar" MaxLength="20" />
+          <Property Name="memory" Type="varchar" MaxLength="20" />
+          <Property Name="mats" Type="char" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_HOA_DON_DON_HANG">
+          <End Role="DON_HANG" Type="Self.DON_HANG" Multiplicity="1" />
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DON_HANG">
+              <PropertyRef Name="madh" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="madh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_makh">
+          <End Role="KHACH_HANG" Type="Self.KHACH_HANG" Multiplicity="1" />
+          <End Role="DON_HANG" Type="Self.DON_HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACH_HANG">
+              <PropertyRef Name="makh" />
+            </Principal>
+            <Dependent Role="DON_HANG">
+              <PropertyRef Name="makh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SAN_PHAM_LOAI_SAN_PHAM">
+          <End Role="LOAI_SAN_PHAM" Type="Self.LOAI_SAN_PHAM" Multiplicity="0..1" />
+          <End Role="SAN_PHAM" Type="Self.SAN_PHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAI_SAN_PHAM">
+              <PropertyRef Name="maloai" />
+            </Principal>
+            <Dependent Role="SAN_PHAM">
+              <PropertyRef Name="maloai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SAN_PHAM_NHA_CUNG_CAP">
+          <End Role="NHA_CUNG_CAP" Type="Self.NHA_CUNG_CAP" Multiplicity="0..1" />
+          <End Role="SAN_PHAM" Type="Self.SAN_PHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHA_CUNG_CAP">
+              <PropertyRef Name="maNCC" />
+            </Principal>
+            <Dependent Role="SAN_PHAM">
+              <PropertyRef Name="maNCC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SAN_PHAM_THONG_SO_KY_THUAT">
+          <End Role="THONG_SO_KY_THUAT" Type="Self.THONG_SO_KY_THUAT" Multiplicity="0..1" />
+          <End Role="SAN_PHAM" Type="Self.SAN_PHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THONG_SO_KY_THUAT">
+              <PropertyRef Name="mats" />
+            </Principal>
+            <Dependent Role="SAN_PHAM">
+              <PropertyRef Name="mats" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="Insert_donhang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="madh" Type="char" Mode="In" />
+          <Parameter Name="makh" Type="char" Mode="In" />
+          <Parameter Name="ngaydat" Type="date" Mode="In" />
+          <Parameter Name="ngaygiao" Type="date" Mode="In" />
+          <Parameter Name="diachigiao" Type="nvarchar" Mode="In" />
+          <Parameter Name="deleted" Type="bit" Mode="In" />
+          <Parameter Name="masp" Type="char" Mode="In" />
+          <Parameter Name="tensp" Type="nvarchar" Mode="In" />
+          <Parameter Name="dongia" Type="int" Mode="In" />
+          <Parameter Name="soluong" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Insert_hoadon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mahd" Type="char" Mode="In" />
+          <Parameter Name="masp" Type="char" Mode="In" />
+          <Parameter Name="tensp" Type="nvarchar" Mode="In" />
+          <Parameter Name="dongia" Type="int" Mode="In" />
+          <Parameter Name="giamgia" Type="int" Mode="In" />
+          <Parameter Name="soluong" Type="int" Mode="In" />
+          <Parameter Name="tongtien" Type="int" Mode="In" />
+          <Parameter Name="deleted" Type="bit" Mode="In" />
+          <Parameter Name="madh" Type="char" Mode="In" />
+          <Parameter Name="ngaydat" Type="date" Mode="In" />
+          <Parameter Name="makh" Type="char" Mode="In" />
+          <Parameter Name="tenkh" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Insert_kh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="makh" Type="char" Mode="In" />
+          <Parameter Name="tenkh" Type="nvarchar" Mode="In" />
+          <Parameter Name="sdt" Type="char" Mode="In" />
+          <Parameter Name="diachi" Type="nvarchar" Mode="In" />
+          <Parameter Name="deleted" Type="bit" Mode="In" />
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="pass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Insert_lsp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maloai" Type="char" Mode="In" />
+          <Parameter Name="tenloai" Type="nvarchar" Mode="In" />
+          <Parameter Name="deleted" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="Insert_ncc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maNCC" Type="char" Mode="In" />
+          <Parameter Name="tencty" Type="nvarchar" Mode="In" />
+          <Parameter Name="diachi" Type="nvarchar" Mode="In" />
+          <Parameter Name="sdt" Type="char" Mode="In" />
+          <Parameter Name="deleted" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="Insert_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="masp" Type="char" Mode="In" />
+          <Parameter Name="tensp" Type="nvarchar" Mode="In" />
+          <Parameter Name="dongia" Type="int" Mode="In" />
+          <Parameter Name="soluong" Type="int" Mode="In" />
+          <Parameter Name="maNCC" Type="char" Mode="In" />
+          <Parameter Name="maloai" Type="char" Mode="In" />
+          <Parameter Name="deleted" Type="bit" Mode="In" />
+          <Parameter Name="anhsp" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="mats" Type="char" Mode="In" />
+        </Function>
+        <Function Name="Search_kh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tukhoa" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Search_lsp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tukhoa" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Search_ncc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tukhoa" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Search_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tukhoa" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="select_donhang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="select_hoadon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_kh_DE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_lsp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_ncc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_ql" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_tskt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_with_lsp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maloai" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Update_kh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="makh" Type="char" Mode="In" />
+          <Parameter Name="tenkh" Type="nvarchar" Mode="In" />
+          <Parameter Name="sdt" Type="char" Mode="In" />
+          <Parameter Name="diachi" Type="nvarchar" Mode="In" />
+          <Parameter Name="deleted" Type="bit" Mode="In" />
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="pass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="update_lsp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maloai" Type="char" Mode="In" />
+          <Parameter Name="tenloai" Type="nvarchar" Mode="In" />
+          <Parameter Name="deleted" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="Update_ncc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maNCC" Type="char" Mode="In" />
+          <Parameter Name="tencty" Type="nvarchar" Mode="In" />
+          <Parameter Name="diachi" Type="nvarchar" Mode="In" />
+          <Parameter Name="sdt" Type="char" Mode="In" />
+          <Parameter Name="deleted" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="Update_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="masp" Type="char" Mode="In" />
+          <Parameter Name="tensp" Type="nvarchar" Mode="In" />
+          <Parameter Name="dongia" Type="int" Mode="In" />
+          <Parameter Name="soluong" Type="int" Mode="In" />
+          <Parameter Name="maNCC" Type="char" Mode="In" />
+          <Parameter Name="maloai" Type="char" Mode="In" />
+          <Parameter Name="deleted" Type="bit" Mode="In" />
+          <Parameter Name="anhsp" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="mats" Type="char" Mode="In" />
+        </Function>
+        <EntityContainer Name="Sale_ManagementModelStoreContainer">
+          <EntitySet Name="DON_HANG" EntityType="Self.DON_HANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOA_DON" EntityType="Self.HOA_DON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHACH_HANG" EntityType="Self.KHACH_HANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAI_SAN_PHAM" EntityType="Self.LOAI_SAN_PHAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHA_CUNG_CAP" EntityType="Self.NHA_CUNG_CAP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUAN_LY" EntityType="Self.QUAN_LY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SAN_PHAM" EntityType="Self.SAN_PHAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THONG_SO_KY_THUAT" EntityType="Self.THONG_SO_KY_THUAT" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_HOA_DON_DON_HANG" Association="Self.FK_HOA_DON_DON_HANG">
+            <End Role="DON_HANG" EntitySet="DON_HANG" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_makh" Association="Self.FK_makh">
+            <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+            <End Role="DON_HANG" EntitySet="DON_HANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SAN_PHAM_LOAI_SAN_PHAM" Association="Self.FK_SAN_PHAM_LOAI_SAN_PHAM">
+            <End Role="LOAI_SAN_PHAM" EntitySet="LOAI_SAN_PHAM" />
+            <End Role="SAN_PHAM" EntitySet="SAN_PHAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SAN_PHAM_NHA_CUNG_CAP" Association="Self.FK_SAN_PHAM_NHA_CUNG_CAP">
+            <End Role="NHA_CUNG_CAP" EntitySet="NHA_CUNG_CAP" />
+            <End Role="SAN_PHAM" EntitySet="SAN_PHAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SAN_PHAM_THONG_SO_KY_THUAT" Association="Self.FK_SAN_PHAM_THONG_SO_KY_THUAT">
+            <End Role="THONG_SO_KY_THUAT" EntitySet="THONG_SO_KY_THUAT" />
+            <End Role="SAN_PHAM" EntitySet="SAN_PHAM" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Sale_ManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DON_HANG">
+          <Key>
+            <PropertyRef Name="madh" />
+          </Key>
+          <Property Name="madh" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="makh" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ngaydat" Type="DateTime" Precision="0" />
+          <Property Name="ngaygiao" Type="DateTime" Precision="0" />
+          <Property Name="diachigiao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="deleted" Type="Boolean" />
+          <Property Name="masp" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="tensp" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="dongia" Type="Int32" />
+          <Property Name="soluong" Type="Int32" />
+          <NavigationProperty Name="HOA_DON" Relationship="Self.FK_HOA_DON_DON_HANG" FromRole="DON_HANG" ToRole="HOA_DON" />
+          <NavigationProperty Name="KHACH_HANG" Relationship="Self.FK_makh" FromRole="DON_HANG" ToRole="KHACH_HANG" />
+        </EntityType>
+        <EntityType Name="HOA_DON">
+          <Key>
+            <PropertyRef Name="mahd" />
+          </Key>
+          <Property Name="mahd" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="masp" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="tensp" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="dongia" Type="Int32" />
+          <Property Name="giamgia" Type="Int32" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="tongtien" Type="Int32" />
+          <Property Name="deleted" Type="Boolean" />
+          <Property Name="madh" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ngaydat" Type="DateTime" Precision="0" />
+          <Property Name="makh" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="tenkh" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DON_HANG" Relationship="Self.FK_HOA_DON_DON_HANG" FromRole="HOA_DON" ToRole="DON_HANG" />
+        </EntityType>
+        <EntityType Name="KHACH_HANG">
+          <Key>
+            <PropertyRef Name="makh" />
+          </Key>
+          <Property Name="makh" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="tenkh" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sdt" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="deleted" Type="Boolean" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="pass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DON_HANG" Relationship="Self.FK_makh" FromRole="KHACH_HANG" ToRole="DON_HANG" />
+        </EntityType>
+        <EntityType Name="LOAI_SAN_PHAM">
+          <Key>
+            <PropertyRef Name="maloai" />
+          </Key>
+          <Property Name="maloai" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="tenloai" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="deleted" Type="Boolean" />
+          <NavigationProperty Name="SAN_PHAM" Relationship="Self.FK_SAN_PHAM_LOAI_SAN_PHAM" FromRole="LOAI_SAN_PHAM" ToRole="SAN_PHAM" />
+        </EntityType>
+        <EntityType Name="NHA_CUNG_CAP">
+          <Key>
+            <PropertyRef Name="maNCC" />
+          </Key>
+          <Property Name="maNCC" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="tencty" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sdt" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="deleted" Type="Boolean" />
+          <NavigationProperty Name="SAN_PHAM" Relationship="Self.FK_SAN_PHAM_NHA_CUNG_CAP" FromRole="NHA_CUNG_CAP" ToRole="SAN_PHAM" />
+        </EntityType>
+        <EntityType Name="QUAN_LY">
+          <Key>
+            <PropertyRef Name="maql" />
+          </Key>
+          <Property Name="maql" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="tenql" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SAN_PHAM">
+          <Key>
+            <PropertyRef Name="masp" />
+          </Key>
+          <Property Name="masp" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="tensp" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dongia" Type="Int32" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="maNCC" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="maloai" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="deleted" Type="Boolean" />
+          <Property Name="anhsp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mats" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="LOAI_SAN_PHAM" Relationship="Self.FK_SAN_PHAM_LOAI_SAN_PHAM" FromRole="SAN_PHAM" ToRole="LOAI_SAN_PHAM" />
+          <NavigationProperty Name="NHA_CUNG_CAP" Relationship="Self.FK_SAN_PHAM_NHA_CUNG_CAP" FromRole="SAN_PHAM" ToRole="NHA_CUNG_CAP" />
+          <NavigationProperty Name="THONG_SO_KY_THUAT" Relationship="Self.FK_SAN_PHAM_THONG_SO_KY_THUAT" FromRole="SAN_PHAM" ToRole="THONG_SO_KY_THUAT" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="THONG_SO_KY_THUAT">
+          <Key>
+            <PropertyRef Name="mats" />
+          </Key>
+          <Property Name="deleted" Type="Boolean" Nullable="false" />
+          <Property Name="manhinh" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="camera" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="chipset" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ram" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="pin" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="memory" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mats" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SAN_PHAM" Relationship="Self.FK_SAN_PHAM_THONG_SO_KY_THUAT" FromRole="THONG_SO_KY_THUAT" ToRole="SAN_PHAM" />
+        </EntityType>
+        <Association Name="FK_HOA_DON_DON_HANG">
+          <End Role="DON_HANG" Type="Self.DON_HANG" Multiplicity="1" />
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DON_HANG">
+              <PropertyRef Name="madh" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="madh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_makh">
+          <End Role="KHACH_HANG" Type="Self.KHACH_HANG" Multiplicity="1" />
+          <End Role="DON_HANG" Type="Self.DON_HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACH_HANG">
+              <PropertyRef Name="makh" />
+            </Principal>
+            <Dependent Role="DON_HANG">
+              <PropertyRef Name="makh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SAN_PHAM_LOAI_SAN_PHAM">
+          <End Role="LOAI_SAN_PHAM" Type="Self.LOAI_SAN_PHAM" Multiplicity="0..1" />
+          <End Role="SAN_PHAM" Type="Self.SAN_PHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAI_SAN_PHAM">
+              <PropertyRef Name="maloai" />
+            </Principal>
+            <Dependent Role="SAN_PHAM">
+              <PropertyRef Name="maloai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SAN_PHAM_NHA_CUNG_CAP">
+          <End Role="NHA_CUNG_CAP" Type="Self.NHA_CUNG_CAP" Multiplicity="0..1" />
+          <End Role="SAN_PHAM" Type="Self.SAN_PHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHA_CUNG_CAP">
+              <PropertyRef Name="maNCC" />
+            </Principal>
+            <Dependent Role="SAN_PHAM">
+              <PropertyRef Name="maNCC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SAN_PHAM_THONG_SO_KY_THUAT">
+          <End Role="THONG_SO_KY_THUAT" Type="Self.THONG_SO_KY_THUAT" Multiplicity="0..1" />
+          <End Role="SAN_PHAM" Type="Self.SAN_PHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THONG_SO_KY_THUAT">
+              <PropertyRef Name="mats" />
+            </Principal>
+            <Dependent Role="SAN_PHAM">
+              <PropertyRef Name="mats" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Sale_ManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DON_HANG" EntityType="Self.DON_HANG" />
+          <EntitySet Name="HOA_DON" EntityType="Self.HOA_DON" />
+          <EntitySet Name="KHACH_HANG" EntityType="Self.KHACH_HANG" />
+          <EntitySet Name="LOAI_SAN_PHAM" EntityType="Self.LOAI_SAN_PHAM" />
+          <EntitySet Name="NHA_CUNG_CAP" EntityType="Self.NHA_CUNG_CAP" />
+          <EntitySet Name="QUAN_LY" EntityType="Self.QUAN_LY" />
+          <EntitySet Name="SAN_PHAM" EntityType="Self.SAN_PHAM" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="THONG_SO_KY_THUAT" EntityType="Self.THONG_SO_KY_THUAT" />
+          <AssociationSet Name="FK_HOA_DON_DON_HANG" Association="Self.FK_HOA_DON_DON_HANG">
+            <End Role="DON_HANG" EntitySet="DON_HANG" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_makh" Association="Self.FK_makh">
+            <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+            <End Role="DON_HANG" EntitySet="DON_HANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SAN_PHAM_LOAI_SAN_PHAM" Association="Self.FK_SAN_PHAM_LOAI_SAN_PHAM">
+            <End Role="LOAI_SAN_PHAM" EntitySet="LOAI_SAN_PHAM" />
+            <End Role="SAN_PHAM" EntitySet="SAN_PHAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SAN_PHAM_NHA_CUNG_CAP" Association="Self.FK_SAN_PHAM_NHA_CUNG_CAP">
+            <End Role="NHA_CUNG_CAP" EntitySet="NHA_CUNG_CAP" />
+            <End Role="SAN_PHAM" EntitySet="SAN_PHAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SAN_PHAM_THONG_SO_KY_THUAT" Association="Self.FK_SAN_PHAM_THONG_SO_KY_THUAT">
+            <End Role="THONG_SO_KY_THUAT" EntitySet="THONG_SO_KY_THUAT" />
+            <End Role="SAN_PHAM" EntitySet="SAN_PHAM" />
+          </AssociationSet>
+          <FunctionImport Name="Insert_donhang">
+            <Parameter Name="madh" Mode="In" Type="String" />
+            <Parameter Name="makh" Mode="In" Type="String" />
+            <Parameter Name="ngaydat" Mode="In" Type="DateTime" />
+            <Parameter Name="ngaygiao" Mode="In" Type="DateTime" />
+            <Parameter Name="diachigiao" Mode="In" Type="String" />
+            <Parameter Name="deleted" Mode="In" Type="Boolean" />
+            <Parameter Name="masp" Mode="In" Type="String" />
+            <Parameter Name="tensp" Mode="In" Type="String" />
+            <Parameter Name="dongia" Mode="In" Type="Int32" />
+            <Parameter Name="soluong" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_hoadon">
+            <Parameter Name="mahd" Mode="In" Type="String" />
+            <Parameter Name="masp" Mode="In" Type="String" />
+            <Parameter Name="tensp" Mode="In" Type="String" />
+            <Parameter Name="dongia" Mode="In" Type="Int32" />
+            <Parameter Name="giamgia" Mode="In" Type="Int32" />
+            <Parameter Name="soluong" Mode="In" Type="Int32" />
+            <Parameter Name="tongtien" Mode="In" Type="Int32" />
+            <Parameter Name="deleted" Mode="In" Type="Boolean" />
+            <Parameter Name="madh" Mode="In" Type="String" />
+            <Parameter Name="ngaydat" Mode="In" Type="DateTime" />
+            <Parameter Name="makh" Mode="In" Type="String" />
+            <Parameter Name="tenkh" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_kh">
+            <Parameter Name="makh" Mode="In" Type="String" />
+            <Parameter Name="tenkh" Mode="In" Type="String" />
+            <Parameter Name="sdt" Mode="In" Type="String" />
+            <Parameter Name="diachi" Mode="In" Type="String" />
+            <Parameter Name="deleted" Mode="In" Type="Boolean" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_lsp">
+            <Parameter Name="maloai" Mode="In" Type="String" />
+            <Parameter Name="tenloai" Mode="In" Type="String" />
+            <Parameter Name="deleted" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_ncc">
+            <Parameter Name="maNCC" Mode="In" Type="String" />
+            <Parameter Name="tencty" Mode="In" Type="String" />
+            <Parameter Name="diachi" Mode="In" Type="String" />
+            <Parameter Name="sdt" Mode="In" Type="String" />
+            <Parameter Name="deleted" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_sp">
+            <Parameter Name="masp" Mode="In" Type="String" />
+            <Parameter Name="tensp" Mode="In" Type="String" />
+            <Parameter Name="dongia" Mode="In" Type="Int32" />
+            <Parameter Name="soluong" Mode="In" Type="Int32" />
+            <Parameter Name="maNCC" Mode="In" Type="String" />
+            <Parameter Name="maloai" Mode="In" Type="String" />
+            <Parameter Name="deleted" Mode="In" Type="Boolean" />
+            <Parameter Name="anhsp" Mode="In" Type="String" />
+            <Parameter Name="mats" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Search_kh" ReturnType="Collection(Sale_ManagementModel.Search_kh_Result)">
+            <Parameter Name="tukhoa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Search_lsp" ReturnType="Collection(Sale_ManagementModel.Search_lsp_Result)">
+            <Parameter Name="tukhoa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Search_ncc" ReturnType="Collection(Sale_ManagementModel.Search_ncc_Result)">
+            <Parameter Name="tukhoa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Search_sp" ReturnType="Collection(Sale_ManagementModel.Search_sp_Result)">
+            <Parameter Name="tukhoa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="select_donhang" ReturnType="Collection(Sale_ManagementModel.select_donhang_Result)" />
+          <FunctionImport Name="select_hoadon" ReturnType="Collection(Sale_ManagementModel.select_hoadon_Result)" />
+          <FunctionImport Name="Select_kh_DE" ReturnType="Collection(Sale_ManagementModel.Select_kh_DE_Result)" />
+          <FunctionImport Name="Select_lsp" ReturnType="Collection(Sale_ManagementModel.Select_lsp_Result)" />
+          <FunctionImport Name="Select_ncc" ReturnType="Collection(Sale_ManagementModel.Select_ncc_Result)" />
+          <FunctionImport Name="Select_ql" ReturnType="Collection(Sale_ManagementModel.Select_ql_Result)" />
+          <FunctionImport Name="Select_sp" ReturnType="Collection(Sale_ManagementModel.Select_sp_Result)" />
+          <FunctionImport Name="Select_tskt" ReturnType="Collection(Sale_ManagementModel.Select_tskt_Result)" />
+          <FunctionImport Name="Select_with_lsp" ReturnType="Collection(Sale_ManagementModel.Select_with_lsp_Result)">
+            <Parameter Name="maloai" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Sale_ManagementModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Sale_ManagementModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="Update_kh">
+            <Parameter Name="makh" Mode="In" Type="String" />
+            <Parameter Name="tenkh" Mode="In" Type="String" />
+            <Parameter Name="sdt" Mode="In" Type="String" />
+            <Parameter Name="diachi" Mode="In" Type="String" />
+            <Parameter Name="deleted" Mode="In" Type="Boolean" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="update_lsp">
+            <Parameter Name="maloai" Mode="In" Type="String" />
+            <Parameter Name="tenloai" Mode="In" Type="String" />
+            <Parameter Name="deleted" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="Update_ncc">
+            <Parameter Name="maNCC" Mode="In" Type="String" />
+            <Parameter Name="tencty" Mode="In" Type="String" />
+            <Parameter Name="diachi" Mode="In" Type="String" />
+            <Parameter Name="sdt" Mode="In" Type="String" />
+            <Parameter Name="deleted" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="Update_sp">
+            <Parameter Name="masp" Mode="In" Type="String" />
+            <Parameter Name="tensp" Mode="In" Type="String" />
+            <Parameter Name="dongia" Mode="In" Type="Int32" />
+            <Parameter Name="soluong" Mode="In" Type="Int32" />
+            <Parameter Name="maNCC" Mode="In" Type="String" />
+            <Parameter Name="maloai" Mode="In" Type="String" />
+            <Parameter Name="deleted" Mode="In" Type="Boolean" />
+            <Parameter Name="anhsp" Mode="In" Type="String" />
+            <Parameter Name="mats" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Search_kh_Result">
+          <Property Type="String" Name="makh" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="tenkh" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="sdt" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="diachi" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="deleted" Nullable="true" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="pass" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="Search_lsp_Result">
+          <Property Type="String" Name="maloai" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="tenloai" Nullable="true" MaxLength="30" />
+          <Property Type="Boolean" Name="deleted" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Search_ncc_Result">
+          <Property Type="String" Name="maNCC" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="tencty" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="diachi" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="sdt" Nullable="true" MaxLength="10" />
+          <Property Type="Boolean" Name="deleted" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Search_sp_Result">
+          <Property Type="String" Name="masp" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="tensp" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="dongia" Nullable="true" />
+          <Property Type="Int32" Name="soluong" Nullable="true" />
+          <Property Type="String" Name="maNCC" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="maloai" Nullable="true" MaxLength="5" />
+          <Property Type="Boolean" Name="deleted" Nullable="true" />
+          <Property Type="String" Name="anhsp" Nullable="true" />
+          <Property Type="String" Name="mats" Nullable="true" MaxLength="5" />
+        </ComplexType>
+        <ComplexType Name="select_donhang_Result">
+          <Property Type="String" Name="madh" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="makh" Nullable="false" MaxLength="5" />
+          <Property Type="DateTime" Name="ngaydat" Nullable="true" />
+          <Property Type="DateTime" Name="ngaygiao" Nullable="true" />
+          <Property Type="String" Name="diachigiao" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="deleted" Nullable="true" />
+          <Property Type="String" Name="masp" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="tensp" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="dongia" Nullable="true" />
+          <Property Type="Int32" Name="soluong" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="select_hoadon_Result">
+          <Property Type="String" Name="mahd" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="masp" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="tensp" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="dongia" Nullable="true" />
+          <Property Type="Int32" Name="giamgia" Nullable="true" />
+          <Property Type="Int32" Name="soluong" Nullable="true" />
+          <Property Type="Int32" Name="tongtien" Nullable="true" />
+          <Property Type="Boolean" Name="deleted" Nullable="true" />
+          <Property Type="String" Name="madh" Nullable="false" MaxLength="5" />
+          <Property Type="DateTime" Name="ngaydat" Nullable="true" />
+          <Property Type="String" Name="makh" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="tenkh" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="Select_kh_DE_Result">
+          <Property Type="String" Name="makh" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="tenkh" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="sdt" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="diachi" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="deleted" Nullable="true" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="pass" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="Select_lsp_Result">
+          <Property Type="String" Name="maloai" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="tenloai" Nullable="true" MaxLength="30" />
+          <Property Type="Boolean" Name="deleted" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Select_ncc_Result">
+          <Property Type="String" Name="maNCC" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="tencty" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="diachi" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="sdt" Nullable="true" MaxLength="10" />
+          <Property Type="Boolean" Name="deleted" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Select_ql_Result">
+          <Property Type="String" Name="maql" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="tenql" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="username" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="pass" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="Select_sp_Result">
+          <Property Type="String" Name="masp" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="tensp" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="dongia" Nullable="true" />
+          <Property Type="Int32" Name="soluong" Nullable="true" />
+          <Property Type="String" Name="maNCC" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="maloai" Nullable="true" MaxLength="5" />
+          <Property Type="Boolean" Name="deleted" Nullable="true" />
+          <Property Type="String" Name="anhsp" Nullable="true" />
+          <Property Type="String" Name="mats" Nullable="true" MaxLength="5" />
+        </ComplexType>
+        <ComplexType Name="Select_tskt_Result">
+          <Property Type="Boolean" Name="deleted" Nullable="false" />
+          <Property Type="String" Name="manhinh" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="camera" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="chipset" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ram" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="pin" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="memory" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="mats" Nullable="false" MaxLength="5" />
+        </ComplexType>
+        <ComplexType Name="Select_with_lsp_Result">
+          <Property Type="String" Name="masp" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="tensp" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="dongia" Nullable="true" />
+          <Property Type="Int32" Name="soluong" Nullable="true" />
+          <Property Type="String" Name="maNCC" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="maloai" Nullable="true" MaxLength="5" />
+          <Property Type="Boolean" Name="deleted" Nullable="true" />
+          <Property Type="String" Name="anhsp" Nullable="true" />
+          <Property Type="String" Name="mats" Nullable="true" MaxLength="5" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Sale_ManagementModelStoreContainer" CdmEntityContainer="Sale_ManagementEntities">
+          <EntitySetMapping Name="DON_HANG">
+            <EntityTypeMapping TypeName="Sale_ManagementModel.DON_HANG">
+              <MappingFragment StoreEntitySet="DON_HANG">
+                <ScalarProperty Name="madh" ColumnName="madh" />
+                <ScalarProperty Name="makh" ColumnName="makh" />
+                <ScalarProperty Name="ngaydat" ColumnName="ngaydat" />
+                <ScalarProperty Name="ngaygiao" ColumnName="ngaygiao" />
+                <ScalarProperty Name="diachigiao" ColumnName="diachigiao" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="dongia" ColumnName="dongia" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOA_DON">
+            <EntityTypeMapping TypeName="Sale_ManagementModel.HOA_DON">
+              <MappingFragment StoreEntitySet="HOA_DON">
+                <ScalarProperty Name="mahd" ColumnName="mahd" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="dongia" ColumnName="dongia" />
+                <ScalarProperty Name="giamgia" ColumnName="giamgia" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="tongtien" ColumnName="tongtien" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="madh" ColumnName="madh" />
+                <ScalarProperty Name="ngaydat" ColumnName="ngaydat" />
+                <ScalarProperty Name="makh" ColumnName="makh" />
+                <ScalarProperty Name="tenkh" ColumnName="tenkh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHACH_HANG">
+            <EntityTypeMapping TypeName="Sale_ManagementModel.KHACH_HANG">
+              <MappingFragment StoreEntitySet="KHACH_HANG">
+                <ScalarProperty Name="makh" ColumnName="makh" />
+                <ScalarProperty Name="tenkh" ColumnName="tenkh" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAI_SAN_PHAM">
+            <EntityTypeMapping TypeName="Sale_ManagementModel.LOAI_SAN_PHAM">
+              <MappingFragment StoreEntitySet="LOAI_SAN_PHAM">
+                <ScalarProperty Name="maloai" ColumnName="maloai" />
+                <ScalarProperty Name="tenloai" ColumnName="tenloai" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHA_CUNG_CAP">
+            <EntityTypeMapping TypeName="Sale_ManagementModel.NHA_CUNG_CAP">
+              <MappingFragment StoreEntitySet="NHA_CUNG_CAP">
+                <ScalarProperty Name="maNCC" ColumnName="maNCC" />
+                <ScalarProperty Name="tencty" ColumnName="tencty" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUAN_LY">
+            <EntityTypeMapping TypeName="Sale_ManagementModel.QUAN_LY">
+              <MappingFragment StoreEntitySet="QUAN_LY">
+                <ScalarProperty Name="maql" ColumnName="maql" />
+                <ScalarProperty Name="tenql" ColumnName="tenql" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SAN_PHAM">
+            <EntityTypeMapping TypeName="Sale_ManagementModel.SAN_PHAM">
+              <MappingFragment StoreEntitySet="SAN_PHAM">
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="dongia" ColumnName="dongia" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="maNCC" ColumnName="maNCC" />
+                <ScalarProperty Name="maloai" ColumnName="maloai" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="anhsp" ColumnName="anhsp" />
+                <ScalarProperty Name="mats" ColumnName="mats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Sale_ManagementModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THONG_SO_KY_THUAT">
+            <EntityTypeMapping TypeName="Sale_ManagementModel.THONG_SO_KY_THUAT">
+              <MappingFragment StoreEntitySet="THONG_SO_KY_THUAT">
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="manhinh" ColumnName="manhinh" />
+                <ScalarProperty Name="camera" ColumnName="camera" />
+                <ScalarProperty Name="chipset" ColumnName="chipset" />
+                <ScalarProperty Name="ram" ColumnName="ram" />
+                <ScalarProperty Name="pin" ColumnName="pin" />
+                <ScalarProperty Name="memory" ColumnName="memory" />
+                <ScalarProperty Name="mats" ColumnName="mats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Insert_donhang" FunctionName="Sale_ManagementModel.Store.Insert_donhang" />
+          <FunctionImportMapping FunctionImportName="Insert_hoadon" FunctionName="Sale_ManagementModel.Store.Insert_hoadon" />
+          <FunctionImportMapping FunctionImportName="Insert_kh" FunctionName="Sale_ManagementModel.Store.Insert_kh" />
+          <FunctionImportMapping FunctionImportName="Insert_lsp" FunctionName="Sale_ManagementModel.Store.Insert_lsp" />
+          <FunctionImportMapping FunctionImportName="Insert_ncc" FunctionName="Sale_ManagementModel.Store.Insert_ncc" />
+          <FunctionImportMapping FunctionImportName="Insert_sp" FunctionName="Sale_ManagementModel.Store.Insert_sp" />
+          <FunctionImportMapping FunctionImportName="Search_kh" FunctionName="Sale_ManagementModel.Store.Search_kh">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sale_ManagementModel.Search_kh_Result">
+                <ScalarProperty Name="makh" ColumnName="makh" />
+                <ScalarProperty Name="tenkh" ColumnName="tenkh" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Search_lsp" FunctionName="Sale_ManagementModel.Store.Search_lsp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sale_ManagementModel.Search_lsp_Result">
+                <ScalarProperty Name="maloai" ColumnName="maloai" />
+                <ScalarProperty Name="tenloai" ColumnName="tenloai" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Search_ncc" FunctionName="Sale_ManagementModel.Store.Search_ncc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sale_ManagementModel.Search_ncc_Result">
+                <ScalarProperty Name="maNCC" ColumnName="maNCC" />
+                <ScalarProperty Name="tencty" ColumnName="tencty" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Search_sp" FunctionName="Sale_ManagementModel.Store.Search_sp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sale_ManagementModel.Search_sp_Result">
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="dongia" ColumnName="dongia" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="maNCC" ColumnName="maNCC" />
+                <ScalarProperty Name="maloai" ColumnName="maloai" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="anhsp" ColumnName="anhsp" />
+                <ScalarProperty Name="mats" ColumnName="mats" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="select_donhang" FunctionName="Sale_ManagementModel.Store.select_donhang">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sale_ManagementModel.select_donhang_Result">
+                <ScalarProperty Name="madh" ColumnName="madh" />
+                <ScalarProperty Name="makh" ColumnName="makh" />
+                <ScalarProperty Name="ngaydat" ColumnName="ngaydat" />
+                <ScalarProperty Name="ngaygiao" ColumnName="ngaygiao" />
+                <ScalarProperty Name="diachigiao" ColumnName="diachigiao" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="dongia" ColumnName="dongia" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="select_hoadon" FunctionName="Sale_ManagementModel.Store.select_hoadon">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sale_ManagementModel.select_hoadon_Result">
+                <ScalarProperty Name="mahd" ColumnName="mahd" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="dongia" ColumnName="dongia" />
+                <ScalarProperty Name="giamgia" ColumnName="giamgia" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="tongtien" ColumnName="tongtien" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="madh" ColumnName="madh" />
+                <ScalarProperty Name="ngaydat" ColumnName="ngaydat" />
+                <ScalarProperty Name="makh" ColumnName="makh" />
+                <ScalarProperty Name="tenkh" ColumnName="tenkh" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_kh_DE" FunctionName="Sale_ManagementModel.Store.Select_kh_DE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sale_ManagementModel.Select_kh_DE_Result">
+                <ScalarProperty Name="makh" ColumnName="makh" />
+                <ScalarProperty Name="tenkh" ColumnName="tenkh" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_lsp" FunctionName="Sale_ManagementModel.Store.Select_lsp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sale_ManagementModel.Select_lsp_Result">
+                <ScalarProperty Name="maloai" ColumnName="maloai" />
+                <ScalarProperty Name="tenloai" ColumnName="tenloai" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_ncc" FunctionName="Sale_ManagementModel.Store.Select_ncc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sale_ManagementModel.Select_ncc_Result">
+                <ScalarProperty Name="maNCC" ColumnName="maNCC" />
+                <ScalarProperty Name="tencty" ColumnName="tencty" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_ql" FunctionName="Sale_ManagementModel.Store.Select_ql">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sale_ManagementModel.Select_ql_Result">
+                <ScalarProperty Name="maql" ColumnName="maql" />
+                <ScalarProperty Name="tenql" ColumnName="tenql" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_sp" FunctionName="Sale_ManagementModel.Store.Select_sp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sale_ManagementModel.Select_sp_Result">
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="dongia" ColumnName="dongia" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="maNCC" ColumnName="maNCC" />
+                <ScalarProperty Name="maloai" ColumnName="maloai" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="anhsp" ColumnName="anhsp" />
+                <ScalarProperty Name="mats" ColumnName="mats" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_tskt" FunctionName="Sale_ManagementModel.Store.Select_tskt">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sale_ManagementModel.Select_tskt_Result">
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="manhinh" ColumnName="manhinh" />
+                <ScalarProperty Name="camera" ColumnName="camera" />
+                <ScalarProperty Name="chipset" ColumnName="chipset" />
+                <ScalarProperty Name="ram" ColumnName="ram" />
+                <ScalarProperty Name="pin" ColumnName="pin" />
+                <ScalarProperty Name="memory" ColumnName="memory" />
+                <ScalarProperty Name="mats" ColumnName="mats" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_with_lsp" FunctionName="Sale_ManagementModel.Store.Select_with_lsp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sale_ManagementModel.Select_with_lsp_Result">
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="dongia" ColumnName="dongia" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="maNCC" ColumnName="maNCC" />
+                <ScalarProperty Name="maloai" ColumnName="maloai" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="anhsp" ColumnName="anhsp" />
+                <ScalarProperty Name="mats" ColumnName="mats" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Sale_ManagementModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Sale_ManagementModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Sale_ManagementModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Sale_ManagementModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sale_ManagementModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Sale_ManagementModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sale_ManagementModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Sale_ManagementModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Sale_ManagementModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="Update_kh" FunctionName="Sale_ManagementModel.Store.Update_kh" />
+          <FunctionImportMapping FunctionImportName="update_lsp" FunctionName="Sale_ManagementModel.Store.update_lsp" />
+          <FunctionImportMapping FunctionImportName="Update_ncc" FunctionName="Sale_ManagementModel.Store.Update_ncc" />
+          <FunctionImportMapping FunctionImportName="Update_sp" FunctionName="Sale_ManagementModel.Store.Update_sp" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
